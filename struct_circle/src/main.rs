@@ -1,6 +1,5 @@
 use std::io;
-use circle::Circle;
-pub mod circle;
+use struct_circle::circle::Circle;
 
 fn main() {
     let mut input = String::new();
