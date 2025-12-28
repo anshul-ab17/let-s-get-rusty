@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rust Backend Frontend</title>
+  <style>
+    body { 
+      background: #190000;
+      color: #e5e7eb;
+      padding: 40px;
+    }
+    button { 
+      cursor: pointer;
+    } 
+  </style>
+</head>
+<body>
+
+  <h1>Frontend</h1>
+
+  <section>
+    <h2>Health Check</h2>
+    <button onclick="health()">Check Health</button>
+    <pre id="health"></pre>
+  </section>
+
+  <section>
+    <h2>Create User</h2>
+    <input id="username" placeholder="username" />
+    <br />
+    <input id="email" placeholder="email" />
+    <br />
+    <button onclick="createUser()">Create</button>
+    <pre id="user"></pre>
+  </section>
+
+  <script>
+    const API = "http://127.0.0.1:3000";
+
+    async function health() {
+      const res = await fetch(`${API}/health`);
+      const data = await res.json();
+      document.getElementById("health").textContent =
+        JSON.stringify(data, null, 2);
+    }
+
+    async function createUser() {
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+
+      const res = await fetch(`${API}/users`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email }),
+      });
+
+      const data = await res.json();
+      document.getElementById("user").textContent =
+        JSON.stringify(data, null, 2);
+    }
+  </script>
+
+</body>
+</html>
+
+
