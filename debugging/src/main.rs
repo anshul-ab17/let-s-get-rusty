@@ -1,6 +1,6 @@
-use std::fmt::{write,Debug, Formatter};
+use std::fmt::{ Debug };
 
-
+#[derive(Debug)]
 //debug - macro
 struct User{
     username:String
@@ -14,9 +14,9 @@ struct User{
 // }
 
 fn main(){
-    let user =User{
-        username:String::from("ab")
+    let username =User{
+        username:String::from("ab") 
     };
-    println!("{:?}",user)
+    println!("{:?}",username)
 
 }
